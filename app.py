@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
 from auth import auth_bp
+from dashboard import dashboard_bp
 
 load_dotenv()
 
@@ -17,6 +18,7 @@ db.init_app(app)
 jwt=JWTManager(app)
 
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
+app.register_blueprint(dashboard_bp, url_prefix='/api/dashboard')
 
 with app.app_context():
     db.create_all()
