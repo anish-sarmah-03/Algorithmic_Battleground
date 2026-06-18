@@ -11,7 +11,7 @@ def get_profile():
     if not user:
         return jsonify ({"message": "User not found"}), 404
     return jsonify({ 
-        "message": "Welcome to you profile",
+        "message": "Welcome to your profile",
         "user_id": user.id,
         "username": user.username, 
         "email": user.email, 
