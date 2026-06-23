@@ -44,7 +44,7 @@ def join_room():
         room.active_members.append(user)
         db.session.commit()
 
-    return jsonify("message": f"Successfully joined room {room_code}"), 200
+    return jsonify({"message": f"Successfully joined room {room_code}"}), 200
 
 @room_bp.route('/submit', methods=['POST'])
 @jwt_required()
