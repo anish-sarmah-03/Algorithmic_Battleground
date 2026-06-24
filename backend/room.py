@@ -7,10 +7,10 @@ from models import db, CodingRoom, Submission, User
 room_bp = Blueprint('room', __name__)
 
 def generate_room_code():
-    return ''.join(random.choices(string.ascii_uppercase + string.digits, k==5))
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
 
 @room_bp.route('/create', methods=['POST'])
-@jwt_required
+@jwt_required()
 def create_room():
     curr_user_id = get_jwt_identity()
     user = User.query.get(curr_user_id)
