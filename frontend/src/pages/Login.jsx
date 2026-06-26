@@ -28,6 +28,7 @@ export default function Login() {
         const res = await API.post('/auth/login', { email, password });
         localStorage.setItem('token', res.data.access_token);
         localStorage.setItem('username', res.data.username);
+        localStorage.setItem('user_id', res.data.user_id);
         navigate('/dashboard'); // Redirect to dashboard upon success!
       }
     } catch (err) {

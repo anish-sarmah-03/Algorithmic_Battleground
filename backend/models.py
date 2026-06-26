@@ -37,3 +37,21 @@ class Submission(db.Model):
     difficulty = db.Column(db.String(10), nullable=False) 
     status = db.Column(db.String(20), nullable=False) 
     submitted_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class Problem(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    difficulty = db.Column(db.String(20), nullable=False) # 'Easy', 'Medium', 'Hard'
+    topic_tag = db.Column(db.String(50), nullable=False)
+    test_cases = db.Column(db.JSON, nullable=False)
+
+class Match(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    room_code = db.Column(db.String(10), unique=True, nullable=False)
+    
+    player_1_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    player_2_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    
+    timer_setting = db.Column(db.Integer, default=30) 
+    status = db.Column(db.String(20), default='waiting')
